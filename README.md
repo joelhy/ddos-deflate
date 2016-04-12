@@ -14,7 +14,7 @@ command below to create a list of IP addresses connected to the server,
 along with their total number of connections. It is one of the simplest
 and easiest to install solutions at the software level.
 
-netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
+ss -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
 
 IP addresses with over a pre-configured number of connections are
 automatically blocked in the server's firewall, which can be direct
@@ -30,7 +30,7 @@ you use APF on your server in general, but deflate will work without it.)
 * The script can run as a cron job at chosen frequency via the configuration file (default: 1 minute)
 * The script can run as a daemon at chosen frequency via the configuration file (default: 5 seconds)
 * You can receive email alerts when IP addresses are blocked.
-* Control blocking by connection state (see man netstat).
+* Control blocking by connection state (see man ss).
 * Auto-detection of firewall.
 * Support for APF, CSF and iptables.
 * Logs events to /var/log/ddos.log

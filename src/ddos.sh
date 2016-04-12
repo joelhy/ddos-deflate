@@ -169,11 +169,11 @@ check_connections()
     BAD_IP_LIST=`$TMP_FILE`
 
     # Original command to get ip's
-    #netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -nr > $BAD_IP_LIST
+    #ss -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -nr > $BAD_IP_LIST
 
     # Improved command
-    netstat -ntu | \
-        # Strip netstat heading
+    ss -ntu | \
+        # Strip ss heading
         tail -n +3 | \
         # Match only the given connection states
         grep -E "$CONN_STATES" | \
@@ -274,8 +274,8 @@ check_connections()
 # Active connections to server.
 view_connections()
 {
-    netstat -ntu | \
-        # Strip netstat heading
+    ss -ntu | \
+        # Strip ss heading
         tail -n +3 | \
         # Match only the given connection states
         grep -E "$CONN_STATES" | \
